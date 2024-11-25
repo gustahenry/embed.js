@@ -30,7 +30,7 @@
   button.addEventListener('click', function () {
       
       // const apiUrlEmbed = 'http://localhost:8000';
-      const apiUrlEmbed = 'http://92.112.176.242:8000';
+      const apiUrlEmbed = 'https://cdn.jsdelivr.net/gh/gustahenry/embed.js';
       const script = document.createElement('script');
 
       script.src = `${apiUrlEmbed}/modal.js`; // URL do modal.js
