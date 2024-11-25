@@ -33,7 +33,7 @@
       const apiUrlEmbed = 'https://cdn.jsdelivr.net/gh/gustahenry/embed.js';
       const script = document.createElement('script');
 
-      script.src = `${apiUrlEmbed}/modal.js`; // URL do modal.js
+      script.src = `https://cdn.jsdelivr.net/gh/gustahenry/embed.js/modal.js`; // URL do modal.js
       script.onload = function () {
           // Exibe o modal quando carregado
           if (typeof showModal === 'function') {
