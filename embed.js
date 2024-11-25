@@ -115,7 +115,7 @@
         const phone = document.getElementById('phone').value;
   
         try {
-          const apiUrl = 'http://92.112.176.242:8000'; // Atualize conforme necessário
+          const apiUrl = ''; // Atualize conforme necessário
           const response = await fetch(`${apiUrl}/api/submit-data`, {
             method: 'POST',
             headers: {
