@@ -157,7 +157,7 @@
   
     // Parte 3: Adiciona o evento de clique no botão
     button.addEventListener('click', function () {
-    //   createModal(); // Chama diretamente o modal
+      createModal(); // Chama diretamente o modal
     });
   })();
   
