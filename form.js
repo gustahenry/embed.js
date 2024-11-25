@@ -5,7 +5,7 @@
   
   scripts.forEach(script => {
     const src = script.src;
-    if (src.includes('embed.js')) { 
+    if (src.includes('button.js')) { 
       const urlParams = new URLSearchParams(src.split('?')[1]);
       source = urlParams.get('source');
     }
