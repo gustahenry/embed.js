@@ -115,7 +115,7 @@
         const phone = document.getElementById('phone').value;
   
         try {
-          const apiUrl = ''; // Atualize conforme necessário
+          const apiUrl = 'http://92.112.176.242:8000'; // Atualize conforme necessário
           const response = await fetch(`${apiUrl}/api/submit-data`, {
             method: 'POST',
             headers: {
@@ -157,7 +157,7 @@
   
     // Parte 3: Adiciona o evento de clique no botão
     button.addEventListener('click', function () {
-      createModal(); // Chama diretamente o modal
+    //   createModal(); // Chama diretamente o modal
     });
   })();
   
