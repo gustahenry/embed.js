@@ -145,6 +145,33 @@
           
         document.body.appendChild(box);
 
+        if (projectData.input_name == 1) {
+            // Cria o novo campo de entrada
+            const nameField = document.createElement('div');
+        
+            const nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.id = 'name';
+            nameInput.required = true;
+            nameInput.placeholder = 'Informe seu nome:';
+            nameInput.style.width = '100%';
+            nameInput.style.padding = '10px';
+            nameInput.style.borderTop = '1px solid #ddd';
+            nameInput.style.borderBottom = '1px solid #ddd';
+            nameInput.style.borderLeft = 'none';
+            nameInput.style.borderRight = 'none';
+            nameInput.style.borderRadius = '0px';
+            nameInput.onfocus = function () {
+                this.style.outline = 'none';
+            };
+        
+            nameField.appendChild(nameInput);
+        
+            // Insere o campo de nome acima do campo de telefone
+            const phoneField = document.getElementById('phone').parentElement;
+            phoneField.parentNode.insertBefore(nameField, phoneField);
+          }
+
         setTimeout(() => {
             document.getElementById('contact-box').style.transform = 'translateY(0)';
         }, 0);
@@ -155,6 +182,36 @@
                 box.remove();
                 container.style.display = 'flex';
             }, 500);
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name') ? document.getElementById('name').value : null;
+            const phone = document.getElementById('phone').value;
+  
+            try {
+                const apiUrl = 'http://92.112.176.242:3001';
+                const response = await fetch(`${apiUrl}/api/cdn/form`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({phone, name, source}),
+                });
+                if (!response.ok) throw new Error('Submission failed.');
+  
+                const whatsappUrl = `https://api.whatsapp.com/send/?phone=${encodeURIComponent(projectData.phone)}&text=${encodeURIComponent(projectData.text)}&type=${encodeURIComponent(projectData.type)}&app_absent=0`;
+                window.location.href = whatsappUrl;
+  
+                box.remove();
+                container.style.display = 'flex'; // Reexibe o botão após o envio
+            } catch (error) {
+                alert('Error submitting data.');
+            }
+        });
+
+        document.getElementById('phone').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.length > 11 ? value.slice(0, 11) : value;
+            e.target.value = value.length <= 10 ? value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3') : value.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
         });
     }
   
